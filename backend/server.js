@@ -1,7 +1,7 @@
 const express = require("express");
 const axios = require("axios");
 const bodyParser = require("body-parser");
-const cors = require("cors");
+// const cors = require("cors");
 const app = express();
 require("dotenv").config();
 
@@ -11,11 +11,11 @@ const PORT = process.env.PORT;
 
 app.use(bodyParser.json());
 
-app.use(
-  cors({
-    origin: "https://6602a5dbaa3817116c76f6c9--strong-elf-bfe218.netlify.app",
-  })
-);
+// app.use(
+//   cors({
+//     origin: "https://6602a5dbaa3817116c76f6c9--strong-elf-bfe218.netlify.app",
+//   })
+// );
 
 app.get("/", (req, res) => {
   res.send("backend!");
