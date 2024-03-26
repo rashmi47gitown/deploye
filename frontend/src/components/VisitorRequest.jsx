@@ -12,7 +12,7 @@ function VisitorRequest() {
       console.log("Sending request...");
       console.log(phoneNumber);
       const response = await axios.post(
-        "http://localhost:4000/visitor-request",
+        "https://wpitest.onrender.com/visitor-request",
         {
           phoneNumber: phoneNumber,
           visitor: visitor,
