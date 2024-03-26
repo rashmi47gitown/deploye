@@ -3,7 +3,8 @@ const axios = require("axios");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
-require("dotenv").config();
+const dotenv = require("dotenv");
+const path = require("path");
 
 console.log(process.env.ACCESS_TOKEN);
 
@@ -11,35 +12,43 @@ const PORT = process.env.PORT;
 
 app.use(bodyParser.json());
 
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-  })
-);
+// app.use(
+//   cors({
+//     origin: "http://localhost:5173",
+//   })
+// );
 
-app.get("/", (req, res) => {
-  res.send("backend!");
+//static files----------------------------------------------
+
+app.use(express.static(path.join(__dirname, "./frontend/dist")));
+
+app.get("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "./frontend/dist/index.html"));
 });
 
-app.get("/send-message", (req, res) => {
-  res.send("message");
-});
+// app.get("/", (req, res) => {
+//   res.send("backend!");
+// });
 
-app.get("/visitor-request", (req, res) => {
-  res.send("visitor");
-});
+// app.get("/send-message", (req, res) => {
+//   res.send("message");
+// });
 
-app.get("/visit-approve", (req, res) => {
-  res.send("message");
-});
+// app.get("/visitor-request", (req, res) => {
+//   res.send("visitor");
+// });
 
-app.get("/visit-in", (req, res) => {
-  res.send("in time of visitor");
-});
+// app.get("/visit-approve", (req, res) => {
+//   res.send("message");
+// });
 
-app.get("/visit-out", (req, res) => {
-  res.send("visitor out time");
-});
+// app.get("/visit-in", (req, res) => {
+//   res.send("in time of visitor");
+// });
+
+// app.get("/visit-out", (req, res) => {
+//   res.send("visitor out time");
+// });
 
 app.post("/send-message", async (req, res) => {
   try {
@@ -47,45 +56,31 @@ app.post("/send-message", async (req, res) => {
     const { phoneNumber, message } = req.body;
     console.log(req.body.phoneNumber);
     console.log(req.body.message);
-
     const accessToken = process.env.ACCESS_TOKEN;
     console.log(process.env.ACCESS_TOKEN);
-    let data = JSON.stringify(
-      {
-        messaging_product: "whatsapp",
-        to: phoneNumber, // to: req.body.phoneNumber,
-        type: "template",
-        template: {
-          name: "send_text",
-          language: {
-            code: "en_US",
-          },
-
-          components: [
-            {
-              type: "body",
-              parameters: [
-                {
-                  type: "text",
-                  text: message,
-                },
-              ],
-            },
-          ],
+    let data = JSON.stringify({
+      messaging_product: "whatsapp",
+      to: phoneNumber, // to: req.body.phoneNumber,
+      type: "template",
+      template: {
+        name: "send_text",
+        language: {
+          code: "en_US",
         },
-      }
 
-      // {
-      //   messaging_product: "whatsapp",
-      //   recipient_type: "individual",
-      //   to: phoneNumber,
-      //   type: "text",
-      //   text: {
-      //     preview_url: false,
-      //     body: message,
-      //   },
-      // }
-    );
+        components: [
+          {
+            type: "body",
+            parameters: [
+              {
+                type: "text",
+                text: message,
+              },
+            ],
+          },
+        ],
+      },
+    });
     let config = {
       method: "post",
       maxBodyLength: Infinity,
