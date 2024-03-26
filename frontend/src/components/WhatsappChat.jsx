@@ -11,13 +11,10 @@ function WhatsAppChat() {
       console.log("Phone Number:", phoneNumber);
       console.log("Message :", message);
 
-      const response = await axios.post(
-        "https://wpitest.onrender.com/send-message",
-        {
-          phoneNumber: phoneNumber,
-          message: message,
-        }
-      );
+      const response = await axios.post("http://localhost:4000/send-message", {
+        phoneNumber: phoneNumber,
+        message: message,
+      });
 
       console.log("Response:", response);
       console.log("Response Data:", response.data);

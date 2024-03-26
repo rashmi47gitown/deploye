@@ -12,13 +12,10 @@ function SendPdf() {
       console.log(phoneNumber);
       console.log(pdfUrl);
       console.log(file);
-      const response = await axios.post(
-        "https://wpitest.onrender.com/send-pdf",
-        {
-          phoneNumber: phoneNumber,
-          pdfUrl: pdfUrl,
-        }
-      );
+      const response = await axios.post("http://localhost:4000/send-pdf", {
+        phoneNumber: phoneNumber,
+        pdfUrl: pdfUrl,
+      });
 
       console.log("Response:", response);
       console.log("Response Data:", response.data);

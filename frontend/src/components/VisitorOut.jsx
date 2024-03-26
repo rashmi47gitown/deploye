@@ -13,14 +13,11 @@ function VisitorOut() {
       console.log("Phone Number:", phoneNumber);
       console.log("Visitor Name:", visitorName);
 
-      const response = await axios.post(
-        "https://wpitest.onrender.com/visitor-out",
-        {
-          phoneNumber: phoneNumber,
-          visitorName: visitorName,
-          time: time,
-        }
-      );
+      const response = await axios.post("http://localhost:4000/visitor-out", {
+        phoneNumber: phoneNumber,
+        visitorName: visitorName,
+        time: time,
+      });
 
       console.log("Response:", response);
       console.log("Response Data:", response.data);

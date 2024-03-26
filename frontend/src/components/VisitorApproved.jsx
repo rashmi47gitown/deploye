@@ -15,7 +15,7 @@ function VisitorApproved() {
       console.log("Company:", company);
 
       const response = await axios.post(
-        "https://wpitest.onrender.com/visitor-approved",
+        "http://localhost:4000/visitor-approved",
         {
           phoneNumber: phoneNumber,
           employeeName: employeeName,

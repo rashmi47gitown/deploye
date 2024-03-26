@@ -8,13 +8,10 @@ function SendImage() {
   const sendMessage = async () => {
     try {
       console.log("Sending request...");
-      const response = await axios.post(
-        "https://wpitest.onrender.com/send-image",
-        {
-          phoneNumber: phoneNumber,
-          imageUrl: imageUrl,
-        }
-      );
+      const response = await axios.post("http://localhost:4000/send-image", {
+        phoneNumber: phoneNumber,
+        imageUrl: imageUrl,
+      });
 
       console.log("Response:", response);
       console.log("Response Data:", response.data);
