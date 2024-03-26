@@ -9,3 +9,5 @@ Currently, two official plugins are available: -->
 
 <!-- pdf=======================
 https://www.planetebook.com/free-ebooks/around-the-world-in-80-days.pdf -->
+
+--env-file=.env
