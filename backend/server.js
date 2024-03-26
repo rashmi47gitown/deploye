@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://6602a5dbaa3817116c76f6c9--strong-elf-bfe218.netlify.app",
   })
 );
 
