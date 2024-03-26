@@ -12,11 +12,11 @@ const PORT = process.env.PORT;
 
 app.use(bodyParser.json());
 
-// app.use(
-//   cors({
-//     origin: "http://localhost:5173",
-//   })
-// );
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  })
+);
 
 //static files----------------------------------------------
 
@@ -26,29 +26,29 @@ app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "./frontend/dist/index.html"));
 });
 
-// app.get("/", (req, res) => {
-//   res.send("backend!");
-// });
+app.get("/", (req, res) => {
+  res.send("backend!");
+});
 
-// app.get("/send-message", (req, res) => {
-//   res.send("message");
-// });
+app.get("/send-message", (req, res) => {
+  res.send("message");
+});
 
-// app.get("/visitor-request", (req, res) => {
-//   res.send("visitor");
-// });
+app.get("/visitor-request", (req, res) => {
+  res.send("visitor");
+});
 
-// app.get("/visit-approve", (req, res) => {
-//   res.send("message");
-// });
+app.get("/visit-approve", (req, res) => {
+  res.send("message");
+});
 
-// app.get("/visit-in", (req, res) => {
-//   res.send("in time of visitor");
-// });
+app.get("/visit-in", (req, res) => {
+  res.send("in time of visitor");
+});
 
-// app.get("/visit-out", (req, res) => {
-//   res.send("visitor out time");
-// });
+app.get("/visit-out", (req, res) => {
+  res.send("visitor out time");
+});
 
 app.post("/send-message", async (req, res) => {
   try {
@@ -60,7 +60,7 @@ app.post("/send-message", async (req, res) => {
     console.log(process.env.ACCESS_TOKEN);
     let data = JSON.stringify({
       messaging_product: "whatsapp",
-      to: phoneNumber, // to: req.body.phoneNumber,
+      to: phoneNumber,
       type: "template",
       template: {
         name: "send_text",
@@ -171,7 +171,7 @@ app.post("/send-image", async (req, res) => {
     console.log(process.env.ACCESS_TOKEN);
     let data = JSON.stringify({
       messaging_product: "whatsapp",
-      to: phoneNumber, // to: req.body.phoneNumber,
+      to: phoneNumber,
       type: "template",
       template: {
         name: "punchimg",
@@ -336,7 +336,7 @@ app.post("/visitor-out", async (req, res) => {
     console.log(process.env.ACCESS_TOKEN);
     let data = JSON.stringify({
       messaging_product: "whatsapp",
-      to: phoneNumber, // to: req.body.phoneNumber,
+      to: phoneNumber,
       type: "template",
       template: {
         name: "visitor_out",
@@ -393,7 +393,7 @@ app.post("/visitor-approved", async (req, res) => {
     console.log(process.env.ACCESS_TOKEN);
     let data = JSON.stringify({
       messaging_product: "whatsapp",
-      to: phoneNumber, // to: req.body.phoneNumber,
+      to: phoneNumber,
       type: "template",
       template: {
         name: "visitor_request_approved",
@@ -450,7 +450,7 @@ app.post("/visitor-rejected", async (req, res) => {
     console.log(process.env.ACCESS_TOKEN);
     let data = JSON.stringify({
       messaging_product: "whatsapp",
-      to: phoneNumber, // to: req.body.phoneNumber,
+      to: phoneNumber,
       type: "template",
       template: {
         name: "visitor_request_reject",
